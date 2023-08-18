@@ -28,7 +28,6 @@ class TodolistController extends Controller
     public function addTodo(Request $request)
     {
         $todo = $request->input("todo");
-        echo json_encode($todo);
         $todolist = $this->todolistService->getTodo();
         if(empty($todo)) {
             return response()->view("todolist.todolist", [
