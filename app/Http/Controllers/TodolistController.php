@@ -29,17 +29,17 @@ class TodolistController extends Controller
     {
         $todo = $request->input("todo");
         echo json_encode($todo);
-        // $todolist = $this->todolistService->getTodo();
-        // if(empty($todo)) {
-        //     return response()->view("todolist.todolist", [
-        //         "title" => "Todolist",
-        //         "error" => "Todolist Is Required",
-        //         "todolist" => $todolist
-        //     ]);
-        // }
+        $todolist = $this->todolistService->getTodo();
+        if(empty($todo)) {
+            return response()->view("todolist.todolist", [
+                "title" => "Todolist",
+                "error" => "Todolist Is Required",
+                "todolist" => $todolist
+            ]);
+        }
 
-        // $this->todolistService->saveTodo(uniqid(), $todo);
-        // return redirect()->action([\App\Http\Controllers\TodolistController::class, "todoList"]);
+        $this->todolistService->saveTodo(uniqid(), $todo);
+        return redirect()->action([\App\Http\Controllers\TodolistController::class, "todoList"]);
     }
 
     public function removeTodo(string $id) : RedirectResponse
